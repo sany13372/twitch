@@ -1,0 +1,83 @@
+.videoContent {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+
+  > img {
+    width: 40px;
+    height: 40px;
+  }
+
+  > div {
+    > h4 {
+      max-height: 24px;
+      overflow: hidden;
+    }
+
+    > h5 {
+      color: gray;
+      margin: 5px 0px;
+    }
+  }
+}
+
+.videoHeader {
+  position: relative;
+  width: 370px;
+  height: 210px;
+
+  div::after {
+    z-index: 3;
+    content: 'LIVE';
+    color: var(--mainTextColor);
+    position: absolute;
+    top: 5%;
+    left: 3%;
+    border-radius: 4px;
+    padding: 0px 4px;
+    background-color: #EB0400;
+  }
+
+
+  > img {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}
+
+.views {
+  position: absolute;
+  color: var(--mainTextColor);
+  padding: 0px 3px;
+  z-index: 4;
+  bottom: 5%;
+  left: 2%;
+  border-radius: 2px;
+  background-color: #000000 !important;
+}
+
+.category {
+  background-color: #53535F;
+  border-radius: 9000px;
+  margin-left: 5px;
+  padding: 0px 8px;
+}
+
+.blockCategory {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.gameTitle {
+  color: gray;
+  margin-left: 50px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}

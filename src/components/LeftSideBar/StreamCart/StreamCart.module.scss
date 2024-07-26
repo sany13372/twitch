@@ -1,0 +1,39 @@
+.StreamCart {
+  color: var(--mainTextColor);
+  display: flex;
+  //justify-content: space-between;
+  font-size: 14px;
+  align-items: center;
+  > img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+  }
+
+
+  > div:nth-child(2){
+    flex: 1;
+  }
+  > div {
+    margin-left: 10px;
+
+    > h4 {
+      color: gray;
+    }
+
+  }
+  > h4{}
+}
+
+.streamLive {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  > div {
+    background-color: red;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+}

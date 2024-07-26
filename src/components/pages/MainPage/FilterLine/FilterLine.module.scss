@@ -1,0 +1,39 @@
+.filterLine {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mainTextColor);
+  margin-top: 20px;
+  > div{
+    display: flex;
+    align-items: center;
+    > input {
+
+      &::placeholder{
+        color: gray;
+      }
+    }
+
+    >h5 {
+      margin-right: 10px;
+    }
+  }
+}
+
+.searchInput{
+  display: flex;
+  align-items: center;
+  width: 220px;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  padding-left: 0.8rem;
+  color: gray;
+  margin-left: 10px;
+  background-color: var(--dark-them);
+  border-radius: 5px;
+  height: 30px;
+  > img {
+    margin-right: 10px;
+  }
+}

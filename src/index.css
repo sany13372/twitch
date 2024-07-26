@@ -1,0 +1,45 @@
+
+:root {
+  font-family: Inter;
+  line-height: 1.5;
+  font-weight: 400;
+  --bgMainPage:#0E0E10;
+  --dark-them:#18181B;
+  --mainTextColor:#EFEFF1;
+  --berusColor:#BF94FF;
+  --blackBG:black;
+  --korBG:#1F1F23;
+  --mainBlue: #5C16C5;
+  --buttonBg:#9147FF;
+  min-height: 100%;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input {
+  all: unset;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin:0;
+  padding:0;
+}
+
+ul,li,ol{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+

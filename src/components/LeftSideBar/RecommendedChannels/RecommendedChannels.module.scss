@@ -1,0 +1,12 @@
+.block{
+  > h4{
+    margin-bottom: 16px;
+  }
+}
+
+.showMore {
+  display: inline-block;
+  margin-top: 0.8rem;
+  cursor: pointer;
+  color: var(--berusColor);
+}

@@ -1,0 +1,47 @@
+.chatSidebar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: transparent;
+  background-color: var(--dark-them);
+  border-left: 1px var(--dark-them);
+  padding: 4px;
+
+  > div {
+    > h4 {
+      text-align: center;
+      color: white;
+    }
+
+    > input {
+      background-color: transparent;
+      border: 1px gray solid;
+      color: gray;
+      border-radius: 4px;
+      padding: 3px;
+      width: 280px;
+
+      ::placeholder {
+        color: gray;
+      }
+    }
+
+    > div {
+      > button {
+        color: white;
+        border-radius: 5px;
+        margin-top: 5px;
+        margin-left: 0;
+        padding: 4px;
+        background-color: var(--buttonBg);
+      }
+    }
+  }
+}
+
+.chatSidebarHeader {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

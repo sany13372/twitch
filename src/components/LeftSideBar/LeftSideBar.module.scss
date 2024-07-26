@@ -1,0 +1,16 @@
+.LeftSideBarHeader{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  > img {
+    cursor: pointer;
+  }
+}
+
+.LeftSideBar{
+  background-color: var(--korBG);
+  color: var(--mainTextColor);
+  padding: 10px;
+  font-size: 14px !important;
+  min-height: 100vh;
+}

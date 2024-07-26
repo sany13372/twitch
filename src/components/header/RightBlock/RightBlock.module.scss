@@ -1,0 +1,23 @@
+.rightBlock{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  > button {
+    height: 37px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    color: var(--mainTextColor);
+    background-color: #53535F;
+    border-radius: 5px;
+  }
+
+  > img {
+    cursor: pointer;
+  }
+}

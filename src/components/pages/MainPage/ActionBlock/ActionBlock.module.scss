@@ -1,0 +1,11 @@
+.ActionBlock{
+  display: flex;
+  background-color: var(--mainBlue);
+  align-items: center;
+  justify-content: space-between;
+  height: 45px;
+  padding: 0px 1rem;
+  color: var(--mainTextColor);
+  border-radius: 6px;
+  width: 200px;
+}

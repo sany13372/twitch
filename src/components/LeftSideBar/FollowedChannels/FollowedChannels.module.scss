@@ -1,0 +1,26 @@
+.FollowedChannels{
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  > img {
+    cursor: pointer;
+    margin-left: 12px;
+  }
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    > h6 {
+      color: gray;
+    }
+  }
+
+}
+
+.showMore {
+  display: inline-block;
+  margin-top: 0.8rem;
+  cursor: pointer;
+  color: var(--berusColor);
+}
