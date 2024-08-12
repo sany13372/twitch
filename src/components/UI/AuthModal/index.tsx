@@ -1,25 +1,31 @@
 import {FC} from 'react';
-import { Modal } from '@mui/base/Modal';
-
+import {useStoreAuthLayout} from "../../layouts/layoutStore";
+import ImgLogo from '../../../assets/TwitchLogo.svg'
+import SigInBlock from "./SigInBlock";
+import styles from './authModal.module.scss'
+import {RxCross1} from "react-icons/rx";
+import SignUpBlock from "./SignUpBlock";
 
 const AuthModal: FC = () => {
+    const setOpenModal = useStoreAuthLayout((store) => store.setOpenModal)
+    const openModal = useStoreAuthLayout((store) => store.openModal)
+    const handleCloseModal = () => setOpenModal('')
     return (
-        <Modal
-            aria-labelledby="unstyled-modal-title"
-            aria-describedby="unstyled-modal-description"
-            open={open}
-            onClose={handleClose}
-            slots={{ backdrop: StyledBackdrop }}
-        >
-            <ModalContent sx={{ width: 400 }}>
-                <h2 id="unstyled-modal-title" className="modal-title">
-                    Text in a modal
-                </h2>
-                <p id="unstyled-modal-description" className="modal-description">
-                    Aliquid amet deserunt earum!
-                </p>
-            </ModalContent>
-        </Modal>
+        <div className={styles.modal} onClick={() => setOpenModal('')}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.cross}>
+                    <RxCross1 onClick={handleCloseModal} color="white" style={{marginRight: 0}}/>
+                </div>
+                <div className={styles.modalHeader}>
+                    <img src={ImgLogo} alt="Logo"/>
+                    <h2 id="unstyled-modal-title" className="modal-title">
+                        Join Twitch today
+                    </h2>
+                </div>
+                {openModal === 'LogIn' && <SigInBlock/>}
+                {openModal === 'SignUp' && <SignUpBlock/>}
+            </div>
+        </div>
     );
 }
 

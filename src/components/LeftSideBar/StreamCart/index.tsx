@@ -1,21 +1,25 @@
 import {FC} from 'react';
 import {IStreamUser} from "../../../types";
 import styles from './StreamCart.module.scss'
-const StreamCart: FC<{ user: IStreamUser }> = ({user}) => {
+import {useNavigate} from "react-router-dom";
 
+const StreamCart: FC<{ user: IStreamUser }> = ({user:{attributes,id}}) => {
+    const nav = useNavigate()
     return (
-        <div className={styles.StreamCart}>
-            <img src={user.avatar} alt="Logo"/>
+        <div className={styles.StreamCart}
+             onClick={() => nav(`viewstream/${id}`)}
+        >
+            <img src={`http://localhost:5173/${attributes.avatar}`} alt="Logo"/>
             <div>
-                <h3>{user.name}</h3>
-                {user.live &&  <h4>{user.game}</h4> }
+                <h3>{attributes.nickname}</h3>
+                {attributes.live && <h4>{attributes.gameStream?.data.attributes.categoryGame}</h4>}
             </div>
-            {user.live ?
+            {attributes.live ?
                 <div className={styles.streamLive}>
                     <div></div>
-                    <h4>{user.usersCount}</h4>
+                    <h4>{attributes.usersCount}</h4>
                 </div>
-            : <h4>Offline</h4>}
+                : <h4>Offline</h4>}
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import {io} from "socket.io-client";
 
-export const socket = io('http://localhost:5100',{ // [1] Important as fuck
+export const socket = io('http://localhost:1337',{ // [1] Important as fuck
     // reconnectionDelay: 1000,
     // reconnection:true,
     // reconnectionAttempts: 10,

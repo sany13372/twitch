@@ -1,21 +1,25 @@
-import {FC, PropsWithChildren} from 'react';
+import {FC} from 'react';
 import Header from "../header";
 import styles from './MainLayout.module.scss'
 import LeftSideBar from "../LeftSideBar";
+import AuthProvider from "./AuthLayout";
+import {Outlet} from "react-router-dom";
+import AuthModal from "../UI/AuthModal";
+import {useStoreAuthLayout} from "./layoutStore";
 
-interface IMainLayout extends PropsWithChildren {
-
-}
-
-const MainLayout: FC<IMainLayout> = ({children}) => {
+const MainLayout: FC = () => {
+    const openModal = useStoreAuthLayout((store) => store.openModal)
     return (
-        <div className={styles.layout}>
-            <Header/>
-            <div>
-                <LeftSideBar/>
-                {children}
+        <AuthProvider>
+            <div className={styles.layout}>
+                <Header/>
+                <div>
+                    <LeftSideBar/>
+                    <Outlet/>
+                </div>
             </div>
-        </div>
+            {openModal && <AuthModal/>}
+        </AuthProvider>
     );
 }
 

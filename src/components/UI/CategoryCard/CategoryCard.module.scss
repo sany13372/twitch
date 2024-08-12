@@ -1,0 +1,32 @@
+.card {
+  > img {
+    height: 300px;
+    max-width: 250px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  > h4 {
+    color: var(--mainTextColor);
+    margin-bottom: 4px;
+  }
+
+  > h5 {
+    color: gray;
+    margin-bottom: 5px;
+  }
+
+  > div {
+    display: flex;
+    gap: 5px;
+
+    > div {
+      background: #53535F;
+      border-radius: 5000px;
+      padding: 1px 5px;
+      color: gray;
+    }
+  }
+}

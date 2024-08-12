@@ -1,26 +1,26 @@
-import {Suspense} from 'react'
+import {Suspense, lazy} from 'react'
 import './App.css'
+import '@mantine/core/styles.css';
 import MainLayout from "./components/layouts/MainLayout";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import MainPage from "./components/pages/MainPage";
-import ViewStreamPage from "./components/pages/ViewStreamPage";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import {Route, Routes} from "react-router-dom";
+import {MantineProvider, Skeleton} from "@mantine/core";
+import NotFoundPage from "./components/pages/NotFoundPage";
 
+const MainPage = lazy(() => import("./components/pages/MainPage"))
+const ViewStreamPage = lazy(() => import("./components/pages/ViewStreamPage"))
 function App() {
-
     return (
-
-        <Suspense fallback={<div>Load</div>}>
-            <MainLayout>
-                    <Routes>
-                        <Route index element={<MainPage/>}  />
-                        <Route element={<ViewStreamPage/>}  path={'viewstream/:name'} />
-                    </Routes>
-            </MainLayout>
+        <MantineProvider defaultColorScheme="dark">
+            <Suspense fallback={<Skeleton/>}>
+                <Routes>
+                    <Route path="/" element={<MainLayout/>}>
+                    <Route index element={<MainPage/>}/>
+                    <Route element={<ViewStreamPage/>} path={'viewstream/:id'}/>
+                    <Route element={<NotFoundPage/>} path="*"/>
+                </Route>
+            </Routes>
         </Suspense>
+        </MantineProvider>
     )
 }
 

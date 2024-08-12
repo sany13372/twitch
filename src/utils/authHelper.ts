@@ -1,18 +1,16 @@
 import Cookies from 'js-cookie'
 
-import { IAuthResponse, ITokens } from '../types/user.types'
+import {IAuthResponse} from '../types/user.types'
 
-export const saveTokensStorage = (data: ITokens) => {
-    Cookies.set('accessToken', data.accessToken)
-    Cookies.set('refreshToken', data.refreshToken)
+export const saveTokensStorage = (jwt:string) => {
+    Cookies.set('accessToken', jwt)
 }
 
-export const saveToStorage = (data: IAuthResponse) => {
-    saveTokensStorage(data)
+export const saveToStorage = (data: IAuthResponse,jwt:string) => {
+    saveTokensStorage(jwt)
     localStorage.setItem('user', JSON.stringify(data.user))
 }
 
 export const removeTokensStorage = () => {
     Cookies.remove('accessToken')
-    Cookies.remove('refreshToken')
 }

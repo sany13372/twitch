@@ -1,0 +1,55 @@
+.footer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  align-items: center;
+
+  > h5 {
+    color: var(--berusColor);
+    cursor: pointer;
+  }
+
+  > button {
+    background: var(--buttonBg);
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+  }
+}
+
+.stepper{
+  > div{
+    display: flex;
+    flex-direction: column !important;
+  }
+}
+
+.labelField{
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.stepTitle{
+  margin-top: 10px;
+  color: white;
+}
+
+.form{
+  text-align: center;
+}
+
+.buttonForm{
+  margin-top: 10px;
+  background: var(--buttonBg);
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.blockSignUp {
+  display: flex;
+  flex-direction: column;
+}

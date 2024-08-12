@@ -1,0 +1,23 @@
+.nameField {
+  background-color: black;
+  color:white;
+  width:400px;
+
+  &:focus{
+    outline: 4px solid var(--buttonBg);
+  }
+
+}
+
+.label{
+  color: lawngreen;
+  position: relative;
+}
+
+.error_alert {
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  left: 10px;
+  bottom: -20px;
+}

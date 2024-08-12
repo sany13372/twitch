@@ -1,9 +1,4 @@
-
-export enum GameEnum {
-    VALORANT = 'Valorant',
-    CounterStrike = 'CounterStrike',
-    ApexLegends = 'CounterStrike'
-}
+import {IGameStream} from "./category.types";
 
 export enum SelectCategoryStreamEnum {
     Categories = 'Categories',
@@ -12,18 +7,31 @@ export enum SelectCategoryStreamEnum {
 }
 
 export interface IStreamUser {
-    name:string
-    avatar:string
-    usersCount:number
-    game?:GameEnum
-    live?:boolean
+    id:number
+    attributes:{
+        nickname:string
+        avatar:string
+        usersCount:number
+        gameStream?:{
+            data: IGameStream
+        }
+        videoLive:{
+            data:IVideoLive
+        }
+        live?:boolean
+    }
 }
 
-export interface IVideo {
-    userName:string
-    videoName:string
-    category:string[]
-    videoImg:string
+export interface IVideoLive {
+    id:number
+    attributes:{
+        streamer:{
+            data:IStreamUser
+        }
+        videoName:string
+        category:string
+        videoImg:string
+    }
 }
 
 export interface IMessage {

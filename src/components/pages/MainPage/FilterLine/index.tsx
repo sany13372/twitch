@@ -1,9 +1,10 @@
 import {FC, useEffect, useState} from 'react';
 import styles from './FilterLine.module.scss'
-import {useStoreMainPage, videosDefault} from "../store";
+import {useStoreMainPage} from "../store";
 import Select from "../../../UI/Select";
 import SearchImg from '../assets/SearchGray.png'
 import {useDebounce} from "../../../../hooks/useDebounce";
+import {VideoServices} from "../../../../services/video.services";
 
 const FilterLine: FC = () => {
     const setSearchTagValue = useStoreMainPage((store) => store.setSearchTagValue)
@@ -20,23 +21,24 @@ const FilterLine: FC = () => {
     useEffect(() => {
         if (debounceSearch !== ''){
             const findVideos = videosLive.filter((video) =>
-                video.category.find((cat) => cat.toLowerCase().includes(debounceSearch.toLowerCase())))
+                video.attributes.category.toLowerCase().includes(debounceSearch.toLowerCase()))
             setVideosLive(findVideos)
         } else {
-            setVideosLive(videosDefault)
+            VideoServices.getVideos().then(({data}) => {setVideosLive(data.data)})
         }
     }, [debounceSearch])
+
     return (
         <div className={styles.filterLine}>
             <div>
-                <Select title="Language" options={[{title: 'English'}, {title: 'Russian'}]}/>
+                <Select title="Language"  options={[{title: 'English'}, {title: 'Russian'}]}/>
                 <div className={styles.searchInput}>
                     <img src={SearchImg} alt="Logo"/>
                     <input type="text" value={value} onChange={onSearchValue} placeholder="Search Tags"/>
                 </div>
             </div>
             <div>
-                <h5>Sort by</h5>
+                <h5 role="sortBy">Sort by</h5>
                 <Select title="Recommended For You" options={[{title: 'Recommended For You'}, {title: 'For You'}]}/>
             </div>
         </div>

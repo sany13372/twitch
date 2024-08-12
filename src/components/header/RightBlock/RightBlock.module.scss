@@ -21,3 +21,17 @@
     cursor: pointer;
   }
 }
+
+.buttonLogIn{
+  background-color: #53535F;
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.buttonSignUp{
+  background-color: var(--buttonBg);
+  color: white;
+  padding: 4px;
+}
+

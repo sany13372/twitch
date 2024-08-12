@@ -5,3 +5,11 @@ body{
   padding: 0;
   background-color: black;
 }
+
+.mantine-Stepper-separator{
+  display: none !important;
+}
+
+.mantine-Stepper-content{
+  display: none !important;
+}

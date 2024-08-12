@@ -4,6 +4,11 @@ import react from '@vitejs/plugin-react-swc'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  test:{
+    globals: true,
+    environment: "jsdom",
+    setupFiles:[ "./tests/setup","@testing-library/jest-dom"],
+  }
   // resolve: {
   //   alias: {
   //     '@assets': path.resolve(__dirname, './src/assets'),
