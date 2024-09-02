@@ -31,7 +31,7 @@ export interface IUserProfile{
 }
 export interface IDataUserRequest {
     jwt:string
-    user:IUserProfile
+    user:IStreamUser
 }
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
 

@@ -1,0 +1,95 @@
+.actionBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  > div:nth-child(1) {
+    display: flex;
+
+    > div {
+      margin-left: 10px;
+
+      > h4 {
+        font-size: 14px;
+        color: var(--berusColor);
+      }
+    }
+  }
+
+  > div:nth-child(2) {
+    > div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+
+      > div:nth-child(1) {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.reaction {
+  cursor: pointer;
+  color: var(--berusColor);
+
+  > span {
+    margin-left: 10px;
+  }
+}
+
+.usersCount {
+  color: red;
+}
+
+.infoStream {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+
+  > h4 {
+    color: red;
+  }
+
+  > img {
+    cursor: pointer;
+  }
+}
+
+.follow {
+  cursor: pointer;
+  background-color: var(--buttonBg);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  &:hover{
+    background-color: #53535F;
+  }
+}
+
+.imgAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #BF94FF;
+  cursor: pointer;
+}
+
+.subscribe {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: #53535F;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 5px;
+  gap: 5px;
+}
+
+

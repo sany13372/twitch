@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {useStoreAuthLayout} from "../../layouts/layoutStore";
+import {OpenModalEnum, useStoreAuthLayout} from "../../layouts/layoutStore";
 import ImgLogo from '../../../assets/TwitchLogo.svg'
 import SigInBlock from "./SigInBlock";
 import styles from './authModal.module.scss'
@@ -22,8 +22,8 @@ const AuthModal: FC = () => {
                         Join Twitch today
                     </h2>
                 </div>
-                {openModal === 'LogIn' && <SigInBlock/>}
-                {openModal === 'SignUp' && <SignUpBlock/>}
+                {openModal === OpenModalEnum.LogIn && <SigInBlock/>}
+                {openModal === OpenModalEnum.SignUp && <SignUpBlock/>}
             </div>
         </div>
     );

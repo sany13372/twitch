@@ -8,7 +8,7 @@ export const saveTokensStorage = (jwt:string) => {
 
 export const saveToStorage = (data: IAuthResponse,jwt:string) => {
     saveTokensStorage(jwt)
-    localStorage.setItem('user', JSON.stringify(data.user))
+    localStorage.setItem('user', JSON.stringify(data))
 }
 
 export const removeTokensStorage = () => {

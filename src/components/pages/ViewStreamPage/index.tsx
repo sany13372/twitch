@@ -3,11 +3,12 @@ import ChatSidebar from "../../UI/ChatSidebar";
 import styles from './ViewStreamPage.module.scss'
 import {useParams} from "react-router-dom";
 import {StreamServices} from "../../../services/stream.services";
-import {IStreamUser} from "../../../types";
+import {IStreamsData} from "../../../types";
 import {Skeleton} from "@mantine/core";
+import ViewStreamBlock from "./ViewStreamBlock";
 
 const ViewStreamPage: FC = () => {
-    const [user, setUser] = useState<IStreamUser>({} as IStreamUser)
+    const [user, setUser] = useState<IStreamsData>({} as IStreamsData)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const idUser = useParams<{ id: string }>()
     useEffect(() => {
@@ -22,16 +23,13 @@ const ViewStreamPage: FC = () => {
                 })
         }
     }, [idUser])
+
     return (
         <div className={styles.ViewStreamPage}>
-            <div>
                 <Skeleton visible={isLoading}>
-                    {user.attributes ? <div>
-                        <img src={user.attributes.videoLive.data.attributes.videoImg} alt="Logo"/>
-                    </div> : <h4>Пользователь не найден</h4>}
+                    {user.attributes ? <ViewStreamBlock user={user}/> : <h4>Пользователь не найден</h4>}
                 </Skeleton>
                 <ChatSidebar user={user}/>
-            </div>
         </div>
     );
 }

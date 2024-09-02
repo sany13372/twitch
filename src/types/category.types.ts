@@ -18,7 +18,7 @@ interface IImgAttributes {
     width: number
 }
 
-interface IImgFormatsAttributes extends IImgAttributes{
+export interface IImgFormatsAttributes extends IImgAttributes{
     formats:{
         large: IImgAttributes
         medium: IImgAttributes

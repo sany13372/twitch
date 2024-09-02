@@ -1,26 +1,54 @@
-import {FC, useEffect, useState} from 'react';
+import {FC, memo, useEffect, useState} from 'react';
 import ExitImg from './assets/Exit.svg'
 import styles from './ChatSidebar.module.scss'
 import {socket} from "../../../socket";
-import {IMessage, IStreamUser} from "../../../types";
+import {IMessage, IStreamsData} from "../../../types";
 import ChatSidebarBody from "./ChatSidebarBody";
+import {OpenModalEnum, useStoreAuthLayout} from "../../layouts/layoutStore";
+import {MessagesServices} from "../../../services/messages.services";
 
 
-const ChatSidebar: FC<{user:IStreamUser}> = ({user}) => {
-    const [text,setText] = useState<string>('')
-    const [messages,setMessages] = useState<IMessage[]>([])
-
+const ChatSidebar: FC<{ user: IStreamsData }> = memo(({user}) => {
+    const [text, setText] = useState<string>('')
+    const [messages, setMessages] = useState<IMessage[]>([])
+    const userAuth = useStoreAuthLayout((store) => store.user)
+    const setOpenModal = useStoreAuthLayout((store) => store.setOpenModal)
     const handelSendMessage = () => {
-        if (text !== ''){
-            socket.emit('message',{text:text,id:user.id,socketId:socket.id})
-            setText('')
+        if (userAuth?.id){
+            if (text !== '') {
+                socket.emit('sendMessage', {
+                    text: text,
+                    nickName: userAuth.username,
+                    userId: userAuth.id,
+                    streamId: user.id,
+                })
+                setText('')
+            }
+        } else {
+            setOpenModal(OpenModalEnum.LogIn)
         }
     }
-    // useEffect(() => {
-    //     socket.on('response',(data) => {
-    //         setMessages((prev) => [...prev,data])
-    //     })
-    // },[socket])
+    console.log('AUTH',userAuth)
+    useEffect(() => {
+        socket.on("message", async (data, error) => {//Listening for a message connection
+        MessagesServices.getMessages()
+            .then(({data}) => {
+                console.log('DATTTT', data.data)
+                setMessages(data.data)
+            })
+            .catch((e) => console.log(e.message));
+        });
+
+    }, [socket])
+
+    useEffect(() => {
+        MessagesServices.getMessages()
+            .then(({data}) => {
+                console.log('DATTTT', data.data)
+                setMessages(data.data)
+            })
+            .catch((e) => console.log(e.message));
+    },[userAuth])
 
     return (
         <div className={styles.chatSidebar}>
@@ -37,6 +65,6 @@ const ChatSidebar: FC<{user:IStreamUser}> = ({user}) => {
             </div>
         </div>
     );
-}
+})
 
 export default ChatSidebar;

@@ -1,10 +1,11 @@
-import {FC, PropsWithChildren} from 'react'
+import {FC, PropsWithChildren, useEffect} from 'react'
 import {useLocation, useNavigate} from "react-router-dom";
 import {removeTokensStorage} from "../../../utils/authHelper";
 import {useStoreAuthLayout} from "../layoutStore";
+import Cookies from "js-cookie";
+import {UserServices} from "../../../services/user.services";
 
 const AuthProvider: FC<PropsWithChildren> = ({children}) => {
-    const user = useStoreAuthLayout((store) => store.user)
     const setUser = useStoreAuthLayout((store) => store.setUser)
     const {pathname} = useLocation()
     const nav = useNavigate()
@@ -15,15 +16,19 @@ const AuthProvider: FC<PropsWithChildren> = ({children}) => {
         nav('/')
     }
 
-    // useEffect(() => {
-    //     const readyUser = localStorage.getItem('user')
-    //     const accessToken = Cookies.get('accessToken')
-    //     if (readyUser) {
-    //         UserService.getById(JSON.parse(readyUser)._id)
-    //             .then((data) => setUser(data.data))
-    //     }
-    //     if (accessToken) checkAuth({refreshToken})
-    // }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        const readyUser = localStorage.getItem('user')
+        const accessToken = Cookies.get('accessToken')
+        if (readyUser) {
+            console.log('READY',readyUser)
+            UserServices.getUser(JSON.parse(readyUser).id)
+                .then(({data }) => {
+                    console.log('datt',data)
+                    setUser(data)
+                })
+        }
+        // if (!accessToken) logout()
+    }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return <>{children}</>
 }

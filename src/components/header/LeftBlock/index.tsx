@@ -1,8 +1,8 @@
-import {FC, useState} from 'react';
+import {FC, memo, useState} from 'react';
 import TwitchLogoImg from '../../../assets/TwitchLogo.svg'
 import styles from './LeftBlock.module.scss'
 import cn from 'clsx'
-import OptionsImg from '../assets/Options.svg'
+import OptionsImg from '../../../assets/Options.svg'
 import {useNavigate} from "react-router-dom";
 
 export const selectSectionType = {
@@ -24,4 +24,4 @@ const LeftBlock: FC = () => {
     );
 }
 
-export default LeftBlock;
+export default  memo(LeftBlock);

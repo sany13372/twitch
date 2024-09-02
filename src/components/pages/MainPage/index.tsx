@@ -15,6 +15,7 @@ import CategoryBlock from "./CategoryBlock";
 import {useStoreAuthLayout} from "../../layouts/layoutStore";
 import {CategoryStreamServices} from "../../../services/categoryGame.services";
 import {Skeleton} from "@mantine/core";
+import {StreamServices} from "../../../services/stream.services";
 
 const MainPage: FC = () => {
     const actions = [{title: 'Games', img: GameImg}, {title: 'IRL', img: IrlImg}, {
@@ -23,18 +24,28 @@ const MainPage: FC = () => {
     }, {title: 'Esports', img: WinImg}, {title: 'Creative', img: PaintImg}]
     const selectCategory = useStoreMainPage((store) => store.selectCategoryStream)
     const setGameCategories = useStoreMainPage((store) => store.setGameCategories)
+    const setStreams = useStoreMainPage((store) => store.setStreams)
     const userAuth = useStoreAuthLayout((store) => store.user)
-    const [isLoading,setIsLoading] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     useEffect(() => {
-        if (userAuth){
+        if (userAuth) {
             setIsLoading(true)
             CategoryStreamServices.getCatigories()
                 .then(({data}) => {
                     setGameCategories(data.data)
                 })
-                .finally(() => {setIsLoading(false)})
+                .finally(() => {
+                    setIsLoading(false)
+                })
+            StreamServices.getStreamers()
+                .then(({data}) => {
+                    setStreams(data.data)
+                })
+                .finally(() => {
+                    setIsLoading(false)
+                })
         }
-    },[userAuth])
+    }, [userAuth])
 
     return (
         <div className={styles.mainPage}>
@@ -44,7 +55,9 @@ const MainPage: FC = () => {
             </div>
             <SelectCategory/>
             <FilterLine/>
-            {selectCategory === SelectCategoryStreamEnum.LiveChannels ? <VideoBlock/> : <Skeleton visible={isLoading}><CategoryBlock/></Skeleton> }
+            <Skeleton visible={isLoading}>
+                {selectCategory === SelectCategoryStreamEnum.LiveChannels ? <VideoBlock/> : <CategoryBlock/>}
+            </Skeleton>
         </div>
     );
 }

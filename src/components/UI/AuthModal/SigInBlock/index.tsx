@@ -10,6 +10,7 @@ import {useStoreAuthLayout} from "../../../layouts/layoutStore";
 import {useNavigate} from "react-router-dom";
 import styles from './SigInBlock.module.scss'
 import {Skeleton} from "@mantine/core";
+import {UserServices} from "../../../../services/user.services";
 
 const SigInBlock: FC = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -32,7 +33,11 @@ const SigInBlock: FC = () => {
             .then((request: IDataUserRequest | any) => {
                 if (request?.data) {
                     saveToStorage(request.data.user, request.data.jwt)
-                    setUser(request.data.user)
+                    UserServices.getUser(request.data.user.id)
+                        .then(({data }) => {
+                            // todo: убрать костыль
+                            setUser(data)
+                        })
                     resetField('email')
                     resetField('username')
                     resetField('password')

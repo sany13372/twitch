@@ -1,12 +1,10 @@
 import {create} from 'zustand'
-import {IStreamUser} from "../../types";
+import {IStreamsData} from "../../types";
 
 
 interface IStoreLeftSideBar {
-    streamUsers: IStreamUser[]
-    setStreamUsers: (users: IStreamUser[] | []) => void
-    recommendedChannels: IStreamUser[]
-
+    streamUsers: IStreamsData[]
+    setStreamUsers: (users: IStreamsData[] | []) => void
 }
 
 export const useStoreLeftSideBar = create<IStoreLeftSideBar>((set) => ({
