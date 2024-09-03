@@ -1,12 +1,12 @@
 import Cookies from 'js-cookie'
 
-import {IAuthResponse} from '../types/user.types'
+import {IStreamUser} from "../types";
 
 export const saveTokensStorage = (jwt:string) => {
     Cookies.set('accessToken', jwt)
 }
 
-export const saveToStorage = (data: IAuthResponse,jwt:string) => {
+export const saveToStorage = (data: IStreamUser,jwt:string) => {
     saveTokensStorage(jwt)
     localStorage.setItem('user', JSON.stringify(data))
 }

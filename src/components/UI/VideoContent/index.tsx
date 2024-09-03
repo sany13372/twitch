@@ -20,9 +20,9 @@ const VideoContent: FC<{ video: IStreamsData }> = ({video}) => {
                     <h5>{video.attributes?.user?.data?.attributes?.username}</h5>
                 </div>
             </div>
-            <h5 className={styles.gameTitle}>{video.attributes.gameStream?.attributes?.categoryGame}</h5>
+            <h5 className={styles.gameTitle}>{video.attributes.gameStream.data.attributes.categoryGame}</h5>
             <div className={styles.blockCategory}>
-                {video.attributes?.categoryGame && video.attributes?.categoryGame.split(',').map((category) => <div className={styles.category}>{category}</div>)}
+                {video.attributes?.categoryGame && video.attributes?.categoryGame.split(',').map((category) => <div key={category} className={styles.category}>{category}</div>)}
             </div>
         </div>
     );

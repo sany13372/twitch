@@ -20,10 +20,8 @@ const AuthProvider: FC<PropsWithChildren> = ({children}) => {
         const readyUser = localStorage.getItem('user')
         const accessToken = Cookies.get('accessToken')
         if (readyUser) {
-            console.log('READY',readyUser)
             UserServices.getUser(JSON.parse(readyUser).id)
                 .then(({data }) => {
-                    console.log('datt',data)
                     setUser(data)
                 })
         }

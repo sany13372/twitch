@@ -7,7 +7,7 @@ export const UserServices = {
         return axios.get<AxiosResponse<IStreamUser[]>>('users?populate=*')
     },
     async getUser(id:number) {
-        return axios.get<AxiosResponse<IStreamUser>>(`users/${id}?populate=*`)
+        return axios.get<IStreamUser>(`users/${id}?populate=*`)
     },
     async updateUser(id:number,dto:any){
         return axios.put(`users/${id}?populate=*`,dto)

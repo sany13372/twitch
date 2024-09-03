@@ -27,6 +27,8 @@
     }
 
     > div {
+      display: flex;
+      justify-content: flex-end;
       > button {
         color: white;
         border-radius: 5px;

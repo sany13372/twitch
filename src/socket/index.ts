@@ -9,7 +9,6 @@ export const socket = io('http://localhost:1337',{ // [1] Important as fuck
     rejectUnauthorized: false
 });
 socket.connect();
-console.log(socket)
 
 socket.on("connect_error", (err) => {
     console.log(` ${err.message}`);

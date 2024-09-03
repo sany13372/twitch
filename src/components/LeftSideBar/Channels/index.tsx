@@ -1,40 +1,39 @@
-import {FC, memo, useEffect, useState} from 'react';
+import {FC, memo, useEffect, useMemo, useState} from 'react';
 import {useStoreLeftSideBar} from "../store";
 import StreamCart from "../StreamCart";
 import styles from './Channels.module.scss'
 import {useStoreAuthLayout} from "../../layouts/layoutStore";
 import {IStreamsData} from "../../../types";
 import {Skeleton} from "@mantine/core";
-import {StreamServices} from "../../../services/stream.services";
+import SortImg from '../../../assets/Sort.svg'
 
-const Channels: FC<{ consist: boolean, title: string, spinner:boolean }> = ({title, consist = false, spinner}) => {
+const Channels: FC<{ consist: boolean, title: string, spinner: boolean }> = ({title, consist = false, spinner}) => {
     const user = useStoreAuthLayout((store) => store.user)
     const streamUsers = useStoreLeftSideBar((store) => store.streamUsers)
     const [streams, setStreams] = useState<IStreamsData[]>([])
     const [isSort, setIsSort] = useState<boolean>(false)
+    const followUs =  useMemo(() => new Set(user ? user?.follows?.map((us) => us.id) : []),[user])
 
-    // useEffect(() => {
-    //     if (users) {
-    //         const sortUsers = users.sort((a, b) => isSort ? a.attributes.usersCount - b.attributes.usersCount : b.attributes.usersCount - a.attributes.usersCount)
-    //         setUsers(sortUsers)
-    //     }
-    //
-    // }, [isSort])
+    useEffect(() => {
+        if (user?.follows && !consist) {
+            //todo:Доработать сортировку
+            const streamsFollows: IStreamsData[] = streamUsers.filter((rect) => followUs.has(rect.attributes.user.data.id))
+            const sortUsers = streamsFollows.sort((a, b) => isSort ? a.attributes.usersCount - b.attributes.usersCount : b.attributes.usersCount - a.attributes.usersCount)
+            setStreams(sortUsers)
+        }
 
+    }, [isSort,streamUsers])
 
 
     useEffect(() => {
         if (streamUsers && user?.id) {
-            console.log('FOLL',user)
             if (consist) {
                 if (user.follows) {
-                    const followUs = new Set(user.follows.map((us) => us.id))
                     const streamsFollows: IStreamsData[] = streamUsers.filter((rect) => !followUs.has(rect.attributes.user.data.id))
                     setStreams(streamsFollows)
                 }
             } else {
                 if (user.follows) {
-                    console.log('WORKK')
                     setStreams(user.follows)
                 }
             }
@@ -43,9 +42,13 @@ const Channels: FC<{ consist: boolean, title: string, spinner:boolean }> = ({tit
         }
     }, [streamUsers, user])
 
+    if (streams.length === 0) return null
     return (
         <div className={styles.block}>
-            <h4>{title}</h4>
+            <div className={styles.sortLine}>
+                <h4>{title}</h4>
+                {/*{user?.follows && user?.follows.length > 0 && !consist  && <img src={SortImg} onClick={() => setIsSort(!isSort)} alt="Logo"/>}*/}
+            </div>
             <Skeleton visible={spinner}>
                 {streams.map((user) => <StreamCart consist={consist} key={user.id} user={user}/>)}
             </Skeleton>

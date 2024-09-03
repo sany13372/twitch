@@ -1,32 +1,5 @@
 import {IStreamUser} from "./index";
 
-interface IImgAttributes {
-    alternativeText:string | null
-    caption: string | null
-    createdAt:string
-    ext:string
-    hash:string
-    height:number
-    mime:string
-    name:string
-    previewUrl:null
-    provider:string
-    provider_metadata:null
-    size:number
-    updatedAt:string
-    url: string
-    width: number
-}
-
-export interface IImgFormatsAttributes extends IImgAttributes{
-    formats:{
-        large: IImgAttributes
-        medium: IImgAttributes
-        small: IImgAttributes
-        thumbnail: IImgAttributes
-    }
-}
-
 export interface  IGameStream {
     id:number
     attributes:{
@@ -34,12 +7,7 @@ export interface  IGameStream {
         createdAt: string
         publishedAt: string
         updatedAt: string
-        categoryImg:{
-            data:{
-                id:number
-                attributes:IImgFormatsAttributes
-            }[]
-        }
+        categoryImg:string
         streamers: {
             id:number
             data:IStreamUser[]

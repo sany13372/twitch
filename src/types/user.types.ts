@@ -11,10 +11,6 @@ export interface IInterfaceEmailPassword {
     password: string
 }
 
-export interface IAuthResponse extends ITokens {
-    user: IStreamUser,
-}
-
 export enum UserRole {
     Authenticated = 'Authenticated'
 }

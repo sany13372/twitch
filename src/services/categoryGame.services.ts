@@ -1,6 +1,6 @@
 import axios from "../interceptor";
-import {IGameStream, IStreamUser} from "../types";
 import {AxiosResponse} from "axios";
+import {IGameStream} from "../types/category.types";
 
 export const CategoryStreamServices = {
     async getCatigories() {

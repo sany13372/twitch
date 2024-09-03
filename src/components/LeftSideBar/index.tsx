@@ -16,8 +16,6 @@ const LeftSideBar: FC = () => {
     useEffect(() => {
             setSpinner(true)
             StreamServices.getStreamers().then(({data}) => {
-                // @ts-ignore
-                console.log('workk')
                 setUsers(data.data)
             }).finally(() => {
                 setSpinner(false)
@@ -30,7 +28,7 @@ const LeftSideBar: FC = () => {
                 <h3>For You</h3>
                 <img src={ExitImg} alt="Logo"/>
             </div>
-            {userAuth?.id && userAuth?.follows && <Channels title="Followed Channels" spinner={spinner} consist={false}/>}
+            {userAuth?.id && userAuth?.follows.length > 0 && <Channels title="Followed Channels" spinner={spinner} consist={false}/>}
             <Channels title="Recommended Channels" spinner={spinner} consist={true}/>
         </div>
     );

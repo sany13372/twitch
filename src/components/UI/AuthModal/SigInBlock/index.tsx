@@ -1,6 +1,6 @@
 import {FC, useState} from 'react';
 import {AuthServices} from "../../../../services/auth.services";
-import {IDataUserRequest, IInputs} from "../../../../types/user.types";
+import {IInputs} from "../../../../types/user.types";
 import {saveToStorage} from "../../../../utils/authHelper";
 import NameInput from "../../Inputs/NameInput";
 import EmailInput from "../../Inputs/EmailInput";
@@ -28,9 +28,9 @@ const SigInBlock: FC = () => {
     const setUser = useStoreAuthLayout((store) => store.setUser)
     const onSubmit = async () => {
         setSpinner(true)
-        const data = {email: getValues('email'), username: getValues('username'), password: getValues('password')}
-        await AuthServices.registerUser({...data})
-            .then((request: IDataUserRequest | any) => {
+        const dataDto = {email: getValues('email'), username: getValues('username'), password: getValues('password')}
+        await AuthServices.registerUser({...dataDto})
+            .then((request ) => {
                 if (request?.data) {
                     saveToStorage(request.data.user, request.data.jwt)
                     UserServices.getUser(request.data.user.id)

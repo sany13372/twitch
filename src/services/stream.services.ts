@@ -1,5 +1,5 @@
 import axios from "../interceptor";
-import {IStreamsData, IStreamUser} from "../types";
+import {IStreamsData} from "../types";
 import {AxiosResponse} from "axios";
 
 export const StreamServices = {

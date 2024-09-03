@@ -1,14 +1,14 @@
 import {FC, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
-import {IDataUserRequest, IInputs} from "../../../../types/user.types";
+import {IInputs} from "../../../../types/user.types";
 import {useStoreAuthLayout} from "../../../layouts/layoutStore";
 import {AuthServices} from "../../../../services/auth.services";
 import {saveToStorage} from "../../../../utils/authHelper";
 import styles from "../SigInBlock/SigInBlock.module.scss";
 import EmailInput from "../../Inputs/EmailInput";
 import PasswordInput from "../../Inputs/PasswordInput";
-import { Skeleton } from '@mantine/core';
+import {Skeleton} from '@mantine/core';
 import {UserServices} from "../../../../services/user.services";
 
 const SignUpBlock: FC = () => {
@@ -26,13 +26,13 @@ const SignUpBlock: FC = () => {
         setSpinner(true)
         const data = {email: getValues('email'), password: getValues('password')}
         await AuthServices.loginUser({identifier: data.email, password: data.password})
-            .then((request: IDataUserRequest | any) => {
-                if (request?.data) {
-                    saveToStorage(request.data.user, request.data.jwt)
-                    UserServices.getUser(request.data.user.id)
-                        .then(({data }) => {
+            .then(({data}) => {
+                if (data) {
+                    saveToStorage(data.user, data.jwt)
+                    UserServices.getUser(data.user.id)
+                        .then((response) => {
                             // todo: убрать костыль
-                            setUser(data)
+                            setUser(response.data)
                         })
                     resetField('email')
                     resetField('password')

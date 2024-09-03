@@ -1,7 +1,14 @@
-.block{
-  > h4{
-    margin-bottom: 16px;
+.block {
+  > div {
+    > h4 {
+      margin-bottom: 16px;
+    }
   }
+}
+
+.sortLine {
+  display: flex;
+  justify-content: space-between;
 }
 
 .showMore {

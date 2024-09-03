@@ -1,6 +1,7 @@
 import {FC, memo, useEffect, useState} from 'react';
 import ExitImg from './assets/Exit.svg'
 import styles from './ChatSidebar.module.scss'
+import { FiUsers } from "react-icons/fi";
 import {socket} from "../../../socket";
 import {IMessage, IStreamsData} from "../../../types";
 import ChatSidebarBody from "./ChatSidebarBody";
@@ -28,12 +29,10 @@ const ChatSidebar: FC<{ user: IStreamsData }> = memo(({user}) => {
             setOpenModal(OpenModalEnum.LogIn)
         }
     }
-    console.log('AUTH',userAuth)
     useEffect(() => {
         socket.on("message", async (data, error) => {//Listening for a message connection
         MessagesServices.getMessages()
             .then(({data}) => {
-                console.log('DATTTT', data.data)
                 setMessages(data.data)
             })
             .catch((e) => console.log(e.message));
@@ -44,7 +43,6 @@ const ChatSidebar: FC<{ user: IStreamsData }> = memo(({user}) => {
     useEffect(() => {
         MessagesServices.getMessages()
             .then(({data}) => {
-                console.log('DATTTT', data.data)
                 setMessages(data.data)
             })
             .catch((e) => console.log(e.message));
@@ -55,6 +53,7 @@ const ChatSidebar: FC<{ user: IStreamsData }> = memo(({user}) => {
             <div className={styles.chatSidebarHeader}>
                 <img src={ExitImg} alt="Logo"/>
                 <h4>STREAM CHAT</h4>
+                <FiUsers />
             </div>
             <ChatSidebarBody messages={messages}/>
             <div>
