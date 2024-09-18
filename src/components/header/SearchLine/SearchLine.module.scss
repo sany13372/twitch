@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   width: 400px;
+  position: relative;
   > input {
     width: 100%;
     border-left: 1px solid gray;
@@ -30,5 +31,39 @@
     background-color: #53535F;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+  }
+}
+
+.dropDownSearch{
+  position:absolute;
+  top: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  max-height: 400px;
+  left: 0;
+  background-color: var(--dark-them);
+  width: 100%;
+  z-index: 3;
+  scrollbar-width: none;
+  > div{
+    padding-top: 10px;
+    cursor: pointer;
+    display: flex;
+    border-top: 1px gray solid;
+
+    > img{
+      margin-left: 20px;
+      max-width: 30px;
+      max-height: 30px;
+      object-fit: cover;
+    }
+    > div{
+      margin-left: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      //max-width: 60px;
+    }
   }
 }

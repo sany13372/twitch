@@ -1,44 +1,28 @@
 import {FC, useMemo} from 'react';
 import {IStreamsData} from "../../../../types";
-import {FaHeart, FaRegStar, FaRegUser, FaShare, FaSmileWink} from "react-icons/fa";
-import {IoIosArrowDown} from "react-icons/io";
+import {FaHeart, FaRegUser, FaShare, FaSmileWink} from "react-icons/fa";
 import OptionsImg from '../../../../assets/Options.svg'
 import styles from './ActionBlock.module.scss'
 import {convertImgUrl} from "../../../../utils/convertImgUrl";
-import {OpenModalEnum, useStoreAuthLayout} from "../../../layouts/layoutStore";
-import {UserServices} from "../../../../services/user.services";
+import {useStoreAuthLayout} from "../../../layouts/layoutStore";
+import {toggleFollow} from "../../../../utils/toggleFollow";
+import SubscribeButton from "../../../UI/SubscribeButton";
+import {useNavigate} from "react-router-dom";
 
 const ActionBlock: FC<{ user: IStreamsData }> = ({user}) => {
     const userAuth = useStoreAuthLayout((store) => store.user)
     const setUserAuth = useStoreAuthLayout((store) => store.setUser)
     const setOpenModal = useStoreAuthLayout((store) => store.setOpenModal)
-    const isFollow = useMemo(() => userAuth ? userAuth?.follows?.find((us) => us.id === user?.attributes?.user.data.id)?.id : false, [userAuth, user])
-    const toggleFollow = () => {
-        if (userAuth?.id) {
-            const userUpdateDto = {
-                follows: {
-                    connect: isFollow ? [] : [{id: user?.attributes?.user.data.id, position: {end: true}}],
-                    disconnect: isFollow ? [{id: user?.attributes?.user.data.id}] : []
-                },
-                role: {disconnect: [], connect: []},
-                streams: {disconnect: [], connect: []},
-                followers: {disconnect: [], connect: []}
-            }
-            UserServices.updateUser(userAuth.id, {...userAuth, ...userUpdateDto})
-            UserServices.getUser(userAuth.id)
-                .then(({data}) => {
-                    setUserAuth(data)
-                })
-        } else {
-            setOpenModal(OpenModalEnum.LogIn)
-        }
-
-    }
+    const findUser = useMemo(() => userAuth ? userAuth?.follows?.find((us) => us.id === user?.attributes?.user.data.id) : false, [userAuth, user])
+    const nav = useNavigate()
+    const handleFollow = () => toggleFollow(userAuth,setOpenModal,Boolean(findUser),user,setUserAuth)
     return (
         <div className={styles.actionBlock}>
             <div>
                 <img className={styles.imgAvatar} src={convertImgUrl(user.attributes.user.data.attributes.avatar)}
-                     alt="Logo"/>
+                     alt="Logo"
+                     onClick={() => nav(`/profile-streamer/${user.attributes.user.data.id}`)}
+                />
                 <div>
                     <h3>{user.attributes.user.data.attributes.username}</h3>
                     <h2>{user.attributes.videoName}</h2>
@@ -48,13 +32,9 @@ const ActionBlock: FC<{ user: IStreamsData }> = ({user}) => {
             <div>
                 <div>
                     <div className={styles.reaction}><FaSmileWink/> <span>React</span></div>
-                    <div className={styles.follow} onClick={toggleFollow}><FaHeart/> {isFollow ? 'UnFollow' : 'Follow'}
+                    <div className={styles.follow} onClick={handleFollow}><FaHeart/> {findUser ? 'UnFollow' : 'Follow'}
                     </div>
-                    <div className={styles.subscribe}>
-                        <FaRegStar/>
-                        <h4>Subscribe</h4>
-                        <IoIosArrowDown/>
-                    </div>
+                    <SubscribeButton/>
                 </div>
                 <div className={styles.infoStream}>
                     <FaRegUser color="red"/>

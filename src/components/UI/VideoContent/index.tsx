@@ -2,7 +2,6 @@ import {FC} from 'react';
 import {IStreamsData} from "../../../types";
 import styles from './VideoContent.module.scss'
 import {useNavigate} from "react-router-dom";
-
 const VideoContent: FC<{ video: IStreamsData }> = ({video}) => {
     const nav = useNavigate()
     return (

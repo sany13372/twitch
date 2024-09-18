@@ -3,18 +3,20 @@ import Header from "../header";
 import styles from './MainLayout.module.scss'
 import LeftSideBar from "../LeftSideBar";
 import AuthProvider from "./AuthLayout";
-import {Outlet} from "react-router-dom";
+import {Outlet, useLocation} from "react-router-dom";
 import AuthModal from "../UI/AuthModal";
 import {useStoreAuthLayout} from "./layoutStore";
 
 const MainLayout: FC = () => {
     const openModal = useStoreAuthLayout((store) => store.openModal)
+    const {pathname} = useLocation()
+    const isAdminPanel = pathname.indexOf("Profile") >= 0
     return (
         <AuthProvider>
             <div className={styles.layout}>
-                <Header/>
+                <Header isAdminPanel={isAdminPanel}/>
                 <div>
-                    <LeftSideBar/>
+                    {isAdminPanel ? <div>Bar</div> : <LeftSideBar/>}
                     <Outlet/>
                 </div>
             </div>

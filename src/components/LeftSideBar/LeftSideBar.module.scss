@@ -1,17 +1,47 @@
-.LeftSideBarHeader{
+.LeftSideBarHeader {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
+
   > img {
     cursor: pointer;
   }
 }
 
-.LeftSideBar{
-  background-color: var(--korBG);
+.LeftSideBar {
+  background-color: var(--dark-them);
   color: var(--mainTextColor);
   padding: 10px;
   font-size: 14px !important;
   min-height: 100vh;
   max-width: 240px;
+
+  &.close {
+    transition: all 1s ease-in-out;
+    transform: translateX(-2%);
+    max-width: 50px;
+
+    > div:nth-child(1) {
+      > h3 {
+        transition: opacity 0.2s ease-in-out;
+        opacity: 0;
+        width: 0px;
+      }
+    }
+
+    > div:nth-child(2) {
+      transition: opacity 0.2s ease-in-out;
+      opacity: 0;
+    }
+
+    > div:nth-child(3) {
+      transition: opacity 0.2s ease-in-out;
+      opacity: 0;
+    }
+  }
+
+  &.open {
+    transition: all 1s ease-in-out;
+    transform: translateX(0%);
+  }
 }

@@ -28,15 +28,16 @@ const SignUpBlock: FC = () => {
         await AuthServices.loginUser({identifier: data.email, password: data.password})
             .then(({data}) => {
                 if (data) {
-                    saveToStorage(data.user, data.jwt)
                     UserServices.getUser(data.user.id)
                         .then((response) => {
                             // todo: убрать костыль
                             setUser(response.data)
+                            saveToStorage(response.data, data.jwt)
+                            resetField('email')
+                            resetField('password')
+                            setSpinner(true)
                         })
-                    resetField('email')
-                    resetField('password')
-                    setSpinner(true)
+
                 }
             })
             .catch((err) => console.log(err.message))
@@ -48,13 +49,13 @@ const SignUpBlock: FC = () => {
     }
     return (
         <div className={styles.form}>
-            <Skeleton visible={spinner} >
+            <Skeleton visible={spinner}>
                 <div className={styles.blockSignUp}>
                     <h6 className={styles.labelField}>Email</h6>
                     <EmailInput register={register} placeholder={'Email'} errors={errors}/>
                     <h6 className={styles.labelField}>Password</h6>
                     <PasswordInput register={register} errors={errors} placeholder={'Password'}/>
-                    {!errors.email &&  <button className={styles.buttonForm} onClick={onSubmit}>SignUp</button>}
+                    {!errors.email && <button className={styles.buttonForm} onClick={onSubmit}>SignUp</button>}
                 </div>
             </Skeleton>
         </div>

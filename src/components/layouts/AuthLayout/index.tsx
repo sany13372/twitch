@@ -21,10 +21,11 @@ const AuthProvider: FC<PropsWithChildren> = ({children}) => {
         const accessToken = Cookies.get('accessToken')
         if (readyUser) {
             UserServices.getUser(JSON.parse(readyUser).id)
-                .then(({data }) => {
-                    setUser(data)
+                .then(({data}) => {
+                            setUser(data)
                 })
-        }
+                }
+
         // if (!accessToken) logout()
     }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 

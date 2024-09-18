@@ -35,13 +35,11 @@ export interface IStreamsData {
     attributes: IStreamsDataAttributes
 }
 
-// export interface IStreams {
-//     id: number
-//     attributes: Omit<IStreamsData, 'users' | 'gameStream'>
-// }
-
+export interface IProfileInfo{
+    aboutTitle:string | null
+    profileBg:string | null
+}
 export interface IStreamUser extends Base {
-    avatar: string
     blocked: boolean
     confirmed: boolean
     email: string
@@ -50,6 +48,8 @@ export interface IStreamUser extends Base {
     provider: string
     streams: IStreamsData[]
     username: string
+    avatar:string
+    profileInfo: IProfileInfo
 }
 
 export interface IMessage {
@@ -62,4 +62,16 @@ interface IMessageAttributes extends Omit<Base, "id">{
     message: string,
     userId:string,
     streamId:string
+}
+
+export interface IVideo {
+    id:string
+    attributes: IVideoAttributes
+}
+
+interface IVideoAttributes extends Pick<IStreamsDataAttributes, 'user' | 'videoName' | 'videoImg'> {
+    videoTime:number
+    gameCategory:string
+    views:number
+    createdAt:string
 }
