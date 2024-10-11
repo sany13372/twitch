@@ -20,7 +20,7 @@ const AboutBlock: FC<{ user: IStreamsData | IStreamUser }> = ({user}) => {
             <Skeleton visible={isLoading}>
                 <h2 className={styles.aboutTitle}>About {aboutUser?.username}</h2>
                 <h4>{aboutUser?.followers?.length} <span className={styles.miniTitle}>followers</span></h4>
-                <p>Hi, hello</p>
+                <p>{aboutUser?.profileInfo?.aboutTitle}</p>
             </Skeleton>
         </div>
     );

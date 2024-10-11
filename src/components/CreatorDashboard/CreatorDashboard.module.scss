@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  > img {
+    cursor: pointer;
+  }
+}
+
+.Dashboard {
+  background-color: var(--dark-them);
+  color: var(--mainTextColor);
+  padding: 10px;
+  font-size: 14px !important;
+  min-height: 100vh;
+  max-width: 240px;
+
+  &.close {
+    transition: all 0.8s ease-in-out;
+    transform: translateX(-2%);
+    max-width: 50px;
+
+    > div:nth-child(1) {
+      > h5 {
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+        width: 0px;
+      }
+    }
+
+    > div:nth-child(2) {
+      transition: opacity 0.3s ease-in-out;
+      opacity: 0;
+    }
+
+    > div:nth-child(3) {
+      transition: opacity 0.3s ease-in-out;
+      opacity: 0;
+    }
+  }
+
+  &.open {
+    transition: all 1s ease-in-out;
+    transform: translateX(0%);
+  }
+}

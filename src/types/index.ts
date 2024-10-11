@@ -36,6 +36,7 @@ export interface IStreamsData {
 }
 
 export interface IProfileInfo{
+    id:number
     aboutTitle:string | null
     profileBg:string | null
 }

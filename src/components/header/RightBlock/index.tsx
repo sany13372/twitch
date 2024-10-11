@@ -5,7 +5,7 @@ import ChestImg from '../assets/Chest.svg'
 import MessageImg from '../assets/Message.svg'
 import LogImg from '../assets/Log.svg'
 import ButtonImg from '../assets/Button.svg'
-import AvatarImg from '../assets/Avatar.svg'
+import AvatarImg from '../../../assets/Avatar.svg'
 import PickImg from '../assets/Pick.svg'
 import {useStoreAuthLayout} from "../../layouts/layoutStore";
 import {CiUser} from "react-icons/ci";

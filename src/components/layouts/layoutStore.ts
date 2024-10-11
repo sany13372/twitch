@@ -11,10 +11,14 @@ interface IStoreAuthLayout {
     setUser:(user:IStreamUser | null ) => void
     openModal:string | OpenModalEnum
     setOpenModal:(val:string | OpenModalEnum) => void
+    isUpdateUserStorage:boolean
+    setIsUpdateUserStorage:(val:boolean) => void
 }
 export const useStoreAuthLayout = create<IStoreAuthLayout>((set) => ({
     user: {} as IStreamUser,
     setUser: (value) => set(() => ({user:value})),
     openModal:'',
     setOpenModal: (value) => set(() => ({openModal:value})),
+    isUpdateUserStorage:false,
+    setIsUpdateUserStorage: (value) => set(() => ({isUpdateUserStorage:value})),
 }))

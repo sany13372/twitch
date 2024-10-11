@@ -35,7 +35,6 @@ const SigInBlock: FC = () => {
                     saveToStorage(request.data.user, request.data.jwt)
                     UserServices.getUser(request.data.user.id)
                         .then(({data }) => {
-                            // todo: убрать костыль
                             setUser(data)
                         })
                     resetField('email')

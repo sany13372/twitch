@@ -1,4 +1,29 @@
 .ProfileStreamerPage{
   width: 100%;
+  padding: 200px 100px 0px 0px;
+  height: 100%;
+  position: relative;
+  object-fit: cover;
+
+  > div:nth-child(1){
+    top: 0%;
+    overflow: hidden;
+    z-index: 1;
+    > div{
+      display: flex;
+      gap: 30px;
+    }
+  }
+  > div:nth-child(2){
   padding: 20px;
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    background-color: var(--bgMainPage);
+  }
+
+}
+
+.bgNickName{
+  position: absolute;
 }

@@ -7,6 +7,7 @@ import {UserServices} from "../../../services/user.services";
 
 const AuthProvider: FC<PropsWithChildren> = ({children}) => {
     const setUser = useStoreAuthLayout((store) => store.setUser)
+    const isUpdateUserStorage = useStoreAuthLayout((store) => store.isUpdateUserStorage)
     const {pathname} = useLocation()
     const nav = useNavigate()
 
@@ -23,11 +24,12 @@ const AuthProvider: FC<PropsWithChildren> = ({children}) => {
             UserServices.getUser(JSON.parse(readyUser).id)
                 .then(({data}) => {
                             setUser(data)
+                    localStorage.setItem('user',JSON.stringify(data))
                 })
                 }
 
         // if (!accessToken) logout()
-    }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [pathname,isUpdateUserStorage]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return <>{children}</>
 }

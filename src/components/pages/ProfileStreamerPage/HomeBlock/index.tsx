@@ -53,7 +53,7 @@ const HomeBlock: FC = () => {
                 </div>
                 <h4 className={styles.categoryTitle}>{userProfile.username} recently streamed Categories</h4>
                 <div className={styles.categoryLine}>
-                    {gameCategories.map((category) => <CategoryCard category={category}/>)}
+                    {gameCategories.map((category) => <CategoryCard key={category.id} category={category}/>)}
                 </div>
             </Skeleton>
         </div>
