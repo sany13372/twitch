@@ -13,4 +13,5 @@ export const saveToStorage = (data: IStreamUser,jwt:string) => {
 
 export const removeTokensStorage = () => {
     Cookies.remove('accessToken')
+    localStorage.removeItem('user')
 }

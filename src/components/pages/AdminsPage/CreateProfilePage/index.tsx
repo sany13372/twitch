@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC, memo, useState} from 'react';
 import BlockSelect from "./BlockSelect";
 import AboutBlock from "./AboutBlock";
 import styles from './CreateProfilePage.module.scss'
@@ -44,4 +44,4 @@ const CreateProfilePage: FC = () => {
     );
 }
 
-export default CreateProfilePage;
+export default memo(CreateProfilePage);

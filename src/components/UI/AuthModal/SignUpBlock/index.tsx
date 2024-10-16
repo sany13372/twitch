@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC, memo, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {IInputs} from "../../../../types/user.types";
@@ -61,4 +61,4 @@ const SignUpBlock: FC = () => {
         </div>
     );
 }
-export default SignUpBlock;
+export default memo(SignUpBlock);

@@ -1,4 +1,4 @@
-import {FC, memo} from 'react';
+import {FC, memo, useCallback} from 'react';
 import styles from './RightBlock.module.scss'
 import KoronaImg from '../assets/Korona.svg'
 import ChestImg from '../assets/Chest.svg'
@@ -15,17 +15,17 @@ import {convertImgUrl} from "../../../utils/convertImgUrl";
 
 const RightBlock: FC<{ isAdminPanel: boolean }> = ({isAdminPanel}) => {
     const setOpenModal = useStoreAuthLayout((store) => store.setOpenModal)
-    const openModalHandle = (typeModal: string) => setOpenModal(typeModal)
+    const openModalHandle = useCallback((typeModal: string) => setOpenModal(typeModal),[])
     const user = useStoreAuthLayout((store) => store.user)
     const setUser = useStoreAuthLayout((store) => store.setUser)
     const nav = useNavigate()
 
-    const logout = () => {
+    const logout = useCallback( () => {
         removeTokensStorage()
-        localStorage.removeItem('user')
         nav('/')
         setUser(null)
-    }
+    },[])
+
     return (
         <div className={styles.rightBlock} style={isAdminPanel ? {width:"100%"} : {}}>
             {!isAdminPanel ?

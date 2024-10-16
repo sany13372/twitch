@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useEffect, useState} from 'react';
+import {ChangeEvent, FC, memo, useEffect, useState} from 'react';
 import styles from './FilterLine.module.scss'
 import {useStoreMainPage} from "../store";
 import Select from "../../../UI/Select";
@@ -51,4 +51,4 @@ const FilterLine: FC = () => {
     );
 }
 
-export default FilterLine;
+export default memo(FilterLine);

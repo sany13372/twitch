@@ -32,7 +32,7 @@ const HomeBlock: FC = () => {
                                 return a;
                             }, []);
                             for (const categories of response.data.data) {
-                                if (filterCategories.includes(categories?.attributes?.categoryGame.toLowerCase())) {
+                                if (filterCategories.includes(categories?.attributes?.categoryGame.toLowerCase() as never)) {
                                     result.push(categories)
                                 }
                             }

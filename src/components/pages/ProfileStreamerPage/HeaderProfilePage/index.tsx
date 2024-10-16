@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import {FC, memo, useMemo} from "react";
 import { useStoreProfilePage } from "../store";
 import styles from "./HeaderProfilePage.module.scss";
 import { convertImgUrl } from "../../../../utils/convertImgUrl";
@@ -25,4 +25,4 @@ const HeaderProfilePage: FC = () => {
     </div>
   );
 };
-export default HeaderProfilePage;
+export default memo(HeaderProfilePage);

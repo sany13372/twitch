@@ -1,4 +1,4 @@
-import {FC, useMemo} from 'react';
+import {FC, memo, useMemo} from 'react';
 import styles from "../HeaderProfilePage.module.scss";
 import {FaHeart} from "react-icons/fa";
 import {IoIosNotifications} from "react-icons/io";
@@ -26,4 +26,4 @@ const HeaderActions:FC = () => {
  );
  }
 
-export default HeaderActions;
+export default memo(HeaderActions);

@@ -38,7 +38,7 @@ const SearchLine: FC = () => {
         <div className={styles.searchLine}>
             <input type="text" onClick={() => setIsOpened(true)} value={searchText} onChange={searchHandle} placeholder="Search"/>
             <button><img src={SearchImg} alt="Logo"/></button>
-            {isOpened && <div ref={refOutside} className={styles.dropDownSearch}>{users.map((user) => <SearchUserCard user={user}/>)}</div>}
+            {isOpened && <div ref={refOutside} className={styles.dropDownSearch}>{users.map((user) => <SearchUserCard key={user.id} user={user}/>)}</div>}
         </div>
     );
 }

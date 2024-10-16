@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import {FC, useCallback, useEffect, useMemo, useState} from "react";
 import { useStoreAuthLayout } from "../../layouts/layoutStore";
 import { UserServices } from "../../../services/user.services";
 import { useParams } from "react-router-dom";
@@ -52,7 +52,7 @@ const ProfileStreamerPage: FC = () => {
         .finally(() => setIsLoading(false));
     }
   }, [userAuth]);
-  const switchSelectBlock = () => {
+  const switchSelectBlock = useCallback(() => {
     switch (selectBlock) {
       case "About":
         return <AboutBlock user={userProfile} />;
@@ -60,7 +60,7 @@ const ProfileStreamerPage: FC = () => {
       default:
         return <HomeBlock />;
     }
-  };
+  } ,[selectBlock,userProfile])
 
   const renderNickName = () => {
     const ind: number[] = [];

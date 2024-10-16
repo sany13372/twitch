@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, memo} from 'react';
 import styles from './ActionBlock.module.scss'
 interface IActionBlock {
     title:string
@@ -13,4 +13,4 @@ const ActionBlock: FC<IActionBlock> = ({title,img}) => {
     );
 }
 
-export default ActionBlock;
+export default memo(ActionBlock);

@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC, memo, useState} from 'react';
 import {AuthServices} from "../../../../services/auth.services";
 import {IInputs} from "../../../../types/user.types";
 import {saveToStorage} from "../../../../utils/authHelper";
@@ -101,4 +101,4 @@ const SigInBlock: FC = () => {
     );
 }
 
-export default SigInBlock;
+export default memo(SigInBlock);

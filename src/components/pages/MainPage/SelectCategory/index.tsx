@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, memo} from 'react';
 import cn from "clsx";
 import {useStoreMainPage} from "../store";
 import {SelectCategoryStreamEnum} from "../../../../types";
@@ -18,4 +18,4 @@ const SelectCategory: FC = () => {
     );
 }
 
-export default SelectCategory;
+export default memo(SelectCategory);

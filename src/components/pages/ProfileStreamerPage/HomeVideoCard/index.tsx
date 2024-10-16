@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useMemo} from 'react';
 import {IVideo} from "../../../../types";
 import styles from './HomeVideoCard.module.scss'
 import {convertImgUrl} from "../../../../utils/convertImgUrl";
@@ -6,10 +6,10 @@ import cn from 'clsx'
 import {IGameStream} from "../../../../types/category.types";
 
 const HomeVideoCard: FC<{video:IVideo,gameCategories:IGameStream[]}> = ({video,gameCategories}) => {
-    const data = new Date(new Date().toUTCString())
-    const dataConvert = new Date(new Date(video.attributes.createdAt).toUTCString())
-    const dataAgo =  Math.abs(Math.ceil((parseInt((dataConvert-data)/1000)/60)/60))
-    const findGame = gameCategories?.find((gm) => gm.attributes.categoryGame.toLowerCase() === video.attributes.gameCategory.toLowerCase())
+    const data = Number(new Date(new Date().toUTCString()))
+    const dataConvert = Number(new Date(new Date(video.attributes.createdAt).toUTCString()))
+    const dataAgo =  Math.abs(Math.ceil((parseInt(String((dataConvert-data)/1000))/60)/60))
+    const findGame = useMemo(() => gameCategories?.find((gm) => gm.attributes.categoryGame.toLowerCase() === video.attributes.gameCategory.toLowerCase()),[gameCategories])
 
     return (
         <div>

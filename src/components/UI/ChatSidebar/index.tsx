@@ -34,7 +34,7 @@ const ChatSidebar: FC<{ user: IStreamsData }> = memo(({user}) => {
     }
 
     useEffect(() => {
-        socket.on("message", async (data, error) => {//Listening for a message connection
+        socket.on("message", async () => {//Listening for a message connection
         MessagesServices.getMessages()
             .then(({data}) => {
                 setMessages(data.data)
@@ -70,4 +70,4 @@ const ChatSidebar: FC<{ user: IStreamsData }> = memo(({user}) => {
     );
 })
 
-export default ChatSidebar;
+export default memo(ChatSidebar);

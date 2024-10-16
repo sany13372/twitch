@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import {Dispatch, FC, memo, SetStateAction} from "react";
 import { Accordion } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { ICreatorDashboardElement } from "../index";
@@ -28,6 +28,7 @@ const CreatorDashboardElement: FC<{
               className={cn(styles.CreatorDashboardElement,{
                 [styles.active]:item.titleItem === selectItem
               })}
+              key={item.titleItem}
             >
               {item.titleItem}
             </div>
@@ -38,4 +39,4 @@ const CreatorDashboardElement: FC<{
   );
 };
 
-export default CreatorDashboardElement;
+export default memo(CreatorDashboardElement);

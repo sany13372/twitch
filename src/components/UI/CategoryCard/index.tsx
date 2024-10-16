@@ -1,11 +1,11 @@
-import {FC} from 'react';
+import {FC, useMemo} from 'react';
 import {IGameStream} from "../../../types/category.types";
 import styles from './CategoryCard.module.scss'
 import {useNavigate} from "react-router-dom";
 import {convertImgUrl} from "../../../utils/convertImgUrl";
 
 const CategoryCard: FC<{ category: IGameStream }> = ({category}) => {
-    const actions = ['FPS', 'Shooter', 'Action']
+    const actions = useMemo(() => ['FPS', 'Shooter', 'Action'],[])
     const nav = useNavigate()
     return (
         <div className={styles.card}>

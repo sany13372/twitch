@@ -10,7 +10,7 @@ const AboutBlock: FC<{ user: IStreamsData | IStreamUser }> = ({user}) => {
     useEffect(() => {
         if (user) {
             setIsLoading(true)
-            UserServices.getUser(user.attributes ? user.attributes.user.data.id : user.id)
+            UserServices.getUser("attributes" in user ? user?.attributes.user.data.id : user?.id)
                 .then(({data}) => setAboutUser(data))
                 .finally(() => setIsLoading(false))
         }

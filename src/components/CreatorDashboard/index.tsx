@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from "react";
+import {FC, memo, ReactNode, useMemo, useState} from "react";
 import cn from "clsx";
 import styles from "./CreatorDashboard.module.scss";
 import { Burger } from "@mantine/core";
@@ -15,26 +15,29 @@ const CreatorDashboard: FC = () => {
   const [selectItem, setSelectItem] = useState<string>("Channel");
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
-  const itemsMenu: ICreatorDashboardElement[] = [
-    {
-      title: "Settings",
-      icon: <IoIosSettings />,
-      items: [
-        {
-          path: "/createProfileUser",
-          titleItem: "Channel",
-        },
-        {
-          path: "/createProfileUser",
-          titleItem: "Stream",
-        },
-        {
-          path: "/createProfileUser",
-          titleItem: "Moderation",
-        },
-      ],
-    },
-  ];
+  const itemsMenu: ICreatorDashboardElement[] = useMemo(
+    () => [
+      {
+        title: "Settings",
+        icon: <IoIosSettings />,
+        items: [
+          {
+            path: "/createProfileUser",
+            titleItem: "Channel",
+          },
+          {
+            path: "/createProfileUser",
+            titleItem: "Stream",
+          },
+          {
+            path: "/createProfileUser",
+            titleItem: "Moderation",
+          },
+        ],
+      },
+    ],
+    [],
+  );
   return (
     <div
       className={cn(styles.Dashboard, {
@@ -42,24 +45,24 @@ const CreatorDashboard: FC = () => {
         [styles.open]: isOpen,
       })}
     >
-        <div className={styles.header}>
-          <h5>CREATOR DASHBOARD</h5>
-          <Burger
-            opened={isOpen}
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle navigation"
-          />
-        </div>
-        {itemsMenu.map((el) => (
-          <CreatorDashboardElement
-            setSelectItem={setSelectItem}
-            selectItem={selectItem}
-            element={el}
-            key={el.title}
-          />
-        ))}
+      <div className={styles.header}>
+        <h5>CREATOR DASHBOARD</h5>
+        <Burger
+          opened={isOpen}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation"
+        />
+      </div>
+      {itemsMenu.map((el) => (
+        <CreatorDashboardElement
+          setSelectItem={setSelectItem}
+          selectItem={selectItem}
+          element={el}
+          key={el.title}
+        />
+      ))}
     </div>
   );
 };
 
-export default CreatorDashboard;
+export default memo(CreatorDashboard);

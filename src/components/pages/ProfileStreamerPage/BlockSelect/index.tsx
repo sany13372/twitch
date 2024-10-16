@@ -1,4 +1,4 @@
-import {Dispatch, FC, SetStateAction} from 'react';
+import {Dispatch, FC, memo, SetStateAction} from 'react';
 import cn from "clsx";
 import styles from './BlockSelect.module.scss'
 import {SelectBlockEnum} from "../index";
@@ -14,4 +14,4 @@ const BlockSelect: FC<{ selectBlock: SelectBlockEnum, setSelectBlock: Dispatch<S
     );
 }
 
-export default BlockSelect;
+export default memo(BlockSelect);

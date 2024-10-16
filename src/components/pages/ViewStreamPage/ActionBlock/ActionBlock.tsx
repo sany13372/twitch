@@ -1,4 +1,4 @@
-import {FC, useMemo} from 'react';
+import {FC, memo, useMemo} from 'react';
 import {IStreamsData} from "../../../../types";
 import {FaHeart, FaRegUser, FaShare, FaSmileWink} from "react-icons/fa";
 import OptionsImg from '../../../../assets/Options.svg'
@@ -48,4 +48,4 @@ const ActionBlock: FC<{ user: IStreamsData }> = ({user}) => {
     );
 }
 
-export default ActionBlock;
+export default memo(ActionBlock);

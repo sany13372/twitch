@@ -6,11 +6,13 @@ import {StreamServices} from "../../../services/stream.services";
 import {IStreamsData} from "../../../types";
 import {Skeleton} from "@mantine/core";
 import ViewStreamBlock from "./ViewStreamBlock";
+import {useStoreAuthLayout} from "../../layouts/layoutStore";
 
 const ViewStreamPage: FC = () => {
     const [user, setUser] = useState<IStreamsData>({} as IStreamsData)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const idUser = useParams<{ id: string }>()
+    const userAuth = useStoreAuthLayout((store) => store.user)
     useEffect(() => {
         if (idUser.id) {
             setIsLoading(true)
@@ -22,7 +24,7 @@ const ViewStreamPage: FC = () => {
                     setIsLoading(false)
                 })
         }
-    }, [idUser])
+    }, [idUser,userAuth])
 
     return (
         <div className={styles.ViewStreamPage}>

@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react';
+import {FC, useEffect, useMemo, useState} from 'react';
 import styles from './MainPage.module.scss'
 import AirPodsImg from './assets/AirPods.png'
 import GameImg from './assets/Game.png'
@@ -18,10 +18,10 @@ import {Skeleton} from "@mantine/core";
 import {StreamServices} from "../../../services/stream.services";
 
 const MainPage: FC = () => {
-    const actions = [{title: 'Games', img: GameImg}, {title: 'IRL', img: IrlImg}, {
+    const actions = useMemo(() => [{title: 'Games', img: GameImg}, {title: 'IRL', img: IrlImg}, {
         title: 'Music',
         img: AirPodsImg
-    }, {title: 'Esports', img: WinImg}, {title: 'Creative', img: PaintImg}]
+    }, {title: 'Esports', img: WinImg}, {title: 'Creative', img: PaintImg}],[])
     const selectCategory = useStoreMainPage((store) => store.selectCategoryStream)
     const setGameCategories = useStoreMainPage((store) => store.setGameCategories)
     const setStreams = useStoreMainPage((store) => store.setStreams)
